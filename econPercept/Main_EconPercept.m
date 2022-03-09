@@ -11,10 +11,10 @@ try
     plotflag = false;
     [ret, name] = system('hostname');
     %%
-    if isequal(deblank(name),'YOUR HOSTNAME HERE')
-        cd('YOUR WORKING DIRECTORY HERE');
+    if isequal(deblank(name),'Emeric-PC')
+        cd('C:\Users\Emeric\Documents\MATLAB\MADMakS\TaskScripts\4Opt4AttEV');
     else
-        cd('/Users/stuphornlab/Documents/MATLAB/renuka');
+        cd('/Users/stuphornlab/Documents/MATLAB/econPercept');
     end
     %%
     % % This is my "shut up" section (turn it back on as needed) % Screen('Preference', 'SkipSyncTests', 1);
@@ -38,7 +38,7 @@ try
         RunNum = input('Enter run #: ', 's'); %Enter which of the 3 runs the participant is on.
         %seed will predefine all random events in the experiment, such as shuffling and waiting times for certain screens.
         seed = input('Enter seed #: ', 's'); %Make sure it still works as expected after removing the "rng_" part!
-    if str2double(RunNum) == 1
+        if str2double(RunNum) == 1
             TrainingTrials = '5'; %This is a number which best acclimates the subject to the experiment
         else
             TrainingTrials = '0';
@@ -51,7 +51,6 @@ try
         TrainingTrials='0';
     end
     %%
-    %filename is created here with the format: econPercept_#_date.mat
     %If the filename entered already exists this will produce an error
     filename = [outDir 'econPercept'];
     if str2num(SubjectID)<10
@@ -81,11 +80,37 @@ try
         end
     end
     Screen('Preference','TextRenderer', 0)
+%     SetResolution(screenNum,1680, 1050,60); %This sets the screen size to 1080
 
-    %% This will run the rest of the experiment
-    Perceptual_trial_test(SubjectID, Date, RunNum, seed, TrainingTrials, filename, outDir);
-    Perceptual_trial_preexperiment(SubjectID, Date, RunNum, seed, TrainingTrials, filename, outDir);
-    Economic_decision_test(SubjectID, Date, RunNum, seed, TrainingTrials, filename, outDir);
+%     if isequal(RunNum,'1')
+%              MADMakS(SubjectID, Date, RunNum, seed, TrainingTrials, filename, outDir);
+%         MADMakS_4Opt(SubjectID, Date, RunNum, seed, TrainingTrials, filename, outDir);
+%         %% IF THE TARGET AND DECOYS FILE IS NOT CREATED RUN THIS SECTION 
+%         %  load datafile
+%         load(filename,'RECORD_DATA')%,'RecordData'
+%         % get TOD/Infos_MAD
+%         [dpath,datafile,EXT] = fileparts(filename);
+%         TOD =  getTrialData(dpath, [datafile,EXT]);
+%         [buttonPresses] = getButtonPresses_R_D(RECORD_DATA);
+%         [MAD_Infos]=getMADInfos(TOD, buttonPresses);
+%         MAD_Infos(~isnan(TOD(:,19)),:)=[];
+%         % get SVmap
+%         % get targets' and decoys' locations
+%         [targetsAndDecoys,SVmap] = get4OptTargetsAndDecoys(MAD_Infos,false);
+%         % save targetsAndDecoys to .mat file
+%         save(fullfile(dpath,[SubjectID '_targetsAndDecoys.mat']),'targetsAndDecoys','SVmap')
+%         %%
+%         if plotflag
+%             contourf(SVmap.P_hat,fliplr(SVmap.A_hat),(SVmap.SV_PT))
+%             hold on
+%             plot(table2array(targetsAndDecoys(:,1)),table2array(targetsAndDecoys(:,2)),'or','markerfacecolor','r')
+%         end
+%         disp(targetsAndDecoys)
+%     else
+        % This will run the rest of the experiment
+        Economic_decision_test(SubjectID, Date, RunNum, seed, TrainingTrials, filename, outDir);
+        Perceptual_trial_test(SubjectID, Date, RunNum, seed, TrainingTrials, filename, outDir);        
+%     end
 catch ME
     % for debugging when trial hangs
     
