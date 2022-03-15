@@ -107,10 +107,26 @@ try
 %         end
 %         disp(targetsAndDecoys)
 %     else
+        nBlocks = 10;
         % This will run the rest of the experiment
-        Economic_decision_test(SubjectID, Date, RunNum, seed, TrainingTrials, filename, outDir);
-        Perceptual_trial_test(SubjectID, Date, RunNum, seed, TrainingTrials, filename, outDir);        
+        [resultsMatrix_Perceptual] = Perceptual_trial_test(SubjectID, Date, RunNum, seed, nBlocks, TrainingTrials, filename, outDir);        
+        [resultsMatrix_Economic]   = Economic_decision_test(SubjectID, Date, RunNum, seed, nBlocks, TrainingTrials, filename, outDir);
 %     end
+% Randomize trial type presented by subject ID
+if mod(str2num([SubjectID]),2) == 1 & mod(str2num([RunNum]),2) == 1
+    resultsMatrix.Perceptual = resultsMatrix_Perceptual;
+    resultsMatrix.Economic = resultsMatrix_Economic;
+elseif mod(str2num([SubjectID]),2) == 1 & mod(str2num([RunNum]),2) == 0
+    resultsMatrix.Economic = resultsMatrix_Economic;
+    resultsMatrix.Perceptual = resultsMatrix_Perceptual;
+elseif mod(str2num([SubjectID]),2) == 0 & mod(str2num([RunNum]),2) == 0
+    resultsMatrix.Perceptual = resultsMatrix_Perceptual;
+    resultsMatrix.Economic = resultsMatrix_Economic;
+elseif mod(str2num([SubjectID]),2) == 0 & mod(str2num([RunNum]),2) == 1
+    resultsMatrix.Economic = resultsMatrix_Economic;
+    resultsMatrix.Perceptual = resultsMatrix_Perceptual;
+end
+save(filename, 'resultsMatrix')
 catch ME
     % for debugging when trial hangs
     

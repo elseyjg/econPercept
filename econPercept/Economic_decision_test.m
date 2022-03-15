@@ -1,4 +1,4 @@
-function Economic_trial_test(SubjectID, Date, RunNum, seed, TrainingTrials, filename, outDir)
+function [resultsMatrix] = Economic_trial_test(SubjectID, Date, RunNum, seed, nBlocks, TrainingTrials, filename, outDir)
 
 global MouseInsteadOfGaze whichEye
     % which eye is being tracked left(1) or right(2)
@@ -7,6 +7,9 @@ global MouseInsteadOfGaze whichEye
     maxTrlTime = 300; % seconds
 
 try
+    
+rng('default')
+rng(str2num([SubjectID, seed]));
 
 entryNumber = 1;
 % Setup PTB with some default values
@@ -58,11 +61,11 @@ numFrames = round(numSecs / ifi);
 % Define the keyboard keys that are listened for. We will be using the left
 % and right arrow keys as response keys for the task and the escape key as
 % a exit/reset key
-escapeKey = KbName('ESCAPE');
-leftKey = KbName('LeftArrow');
-rightKey = KbName('RightArrow');
-downKey = KbName('DownArrow');
-upKey = KbName('UpArrow');
+% escapeKey = KbName('ESCAPE');
+% leftKey = KbName('LeftArrow');
+% rightKey = KbName('RightArrow');
+% downKey = KbName('DownArrow');
+% upKey = KbName('UpArrow');
 
 if ismac
     E_ButtonPress = 8;
@@ -72,8 +75,17 @@ if ismac
     two_ButtonPress = 31;
     three_ButtonPress = 32;
     four_ButtonPress = 33;
-
+    escapeKey = 41;
+    leftKey = 80;
+    rightKey = 79;
+    downKey = 81;
+    upKey = 82;
 else %is Windows
+    escapeKey = KbName('ESCAPE');
+    leftKey = KbName('LeftArrow');
+    rightKey = KbName('RightArrow');
+    downKey = KbName('DownArrow');
+    upKey = KbName('UpArrow');
     E_ButtonPress = 69;
     Q_ButtonPress = 81;
     End_ButtonPress = 35;
@@ -90,13 +102,10 @@ end
 %----------------------------------------------------------------------
 
 nFrames = 12;
-nBlocks = 1;
-
 
 %----------------------------------------------------------------------
 %                       Fixation cross
 %----------------------------------------------------------------------
-tic
 % Here we set the size of the arms of our fixation cross
 fixCrossDimPix = 20;
 FW = fixCrossDimPix*1.5; % Fixation window to flip the fixation cross
@@ -108,7 +117,6 @@ allCoords = [xCoords; yCoords];
 
 % Set the line width for our fixation cross
 lineWidthPix = 4;
-
 
 %----------------------------------------------------------------------
 %                  Define positions of sequences
@@ -167,7 +175,8 @@ penWidthPixels = 6;
 %                  Randomise temporal order of trials
 %----------------------------------------------------------------------
  
-trialorder = [1 2 3 4];
+trialorder = [1:4];
+nTrials = size(trialorder,2);
 randtemp = Shuffle(trialorder);
 
 %----------------------------------------------------------------------
@@ -297,6 +306,7 @@ while currentblock <= nBlocks
         end
         
         % Fixation cross
+        tic
         Screen('DrawLines', window, allCoords,lineWidthPix, white, [xCenter yCenter], 2);
         Screen('Flip', window, [], 1);
 
@@ -459,7 +469,7 @@ while currentblock <= nBlocks
             end
         end
 
-        % Second stage
+        %% Second stage
         Screen('FillRect', window, black);
         Screen('Flip', window);
 
@@ -1324,35 +1334,36 @@ while currentblock <= nBlocks
     currentblock = currentblock + 1;
 end
 
-choosing_trial_prize_1 = randi(4); % Would be 200
-choosing_trial_prize_2 = randi(4); % Would be 200   
-if resultsMatrix(choosing_trial_prize_1).Key2 == "LeftArrow"
-    winning_distribution_1 = resultsMatrix(choosing_trial_prize_1).Sleftnumbers;
-elseif resultsMatrix(choosing_trial_prize_1).Key2 == "RightArrow"
-    winning_distribution_1 = resultsMatrix(choosing_trial_prize_1).Srightnumbers;
-end
-  
-if resultsMatrix(choosing_trial_prize_2).Key2 == "LeftArrow"
-    winning_distribution_2 = resultsMatrix(choosing_trial_prize_2).Sleftnumbers;
-elseif resultsMatrix(choosing_trial_prize_2).Key2 == "RightArrow"         
-    winning_distribution_2 = resultsMatrix(choosing_trial_prize_2).Srightnumbers;
-end
+choosing_trial_prize_1 = randi(nTrials); % Would be 200
+choosing_trial_prize_2 = randi(nTrials); % Would be 200   
 
-prize_1_numbers = str2num(winning_distribution_1);
-prize_1 = prize_1_numbers(randperm(length(prize_1_numbers),1));
-prize_2_numbers = str2num(winning_distribution_2);
-prize_2 = prize_2_numbers(randperm(length(prize_2_numbers),1));
-  overall_prize = prize_1 + prize_2;
-
-line10 = 'Congratulations, you have won:';
-line11 = num2str(overall_prize);
-line12 = 'dollars';
- 
-% Draw all the text in one go
-Screen('TextSize', window, 30);
-Screen('DrawText', window, line10, screenXpixels*0.2, screenYpixels*0.4, white);
-Screen('DrawText', window, line11, screenXpixels*0.2, screenYpixels*0.5, white);
-Screen('DrawText', window, line12, screenXpixels*0.25, screenYpixels*0.5, white);
+% if resultsMatrix(choosing_trial_prize_1).Key2 == "LeftArrow"
+%     winning_distribution_1 = resultsMatrix(choosing_trial_prize_1).Sleftnumbers;
+% elseif resultsMatrix(choosing_trial_prize_1).Key2 == "RightArrow"
+%     winning_distribution_1 = resultsMatrix(choosing_trial_prize_1).Srightnumbers;
+% end
+%   
+% if resultsMatrix(choosing_trial_prize_2).Key2 == "LeftArrow"
+%     winning_distribution_2 = resultsMatrix(choosing_trial_prize_2).Sleftnumbers;
+% elseif resultsMatrix(choosing_trial_prize_2).Key2 == "RightArrow"         
+%     winning_distribution_2 = resultsMatrix(choosing_trial_prize_2).Srightnumbers;
+% end
+% 
+% prize_1_numbers = str2num(winning_distribution_1);
+% prize_1 = prize_1_numbers(randperm(length(prize_1_numbers),1));
+% prize_2_numbers = str2num(winning_distribution_2);
+% prize_2 = prize_2_numbers(randperm(length(prize_2_numbers),1));
+%   overall_prize = prize_1 + prize_2;
+% 
+% line10 = 'Congratulations, you have won:';
+% line11 = num2str(overall_prize);
+% line12 = 'dollars';
+%  
+% % Draw all the text in one go
+% Screen('TextSize', window, 30);
+% Screen('DrawText', window, line10, screenXpixels*0.2, screenYpixels*0.4, white);
+% Screen('DrawText', window, line11, screenXpixels*0.2, screenYpixels*0.5, white);
+% Screen('DrawText', window, line12, screenXpixels*0.25, screenYpixels*0.5, white);
 
 % Flip to the screen
 Screen('Flip', window);
