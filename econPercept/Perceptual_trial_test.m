@@ -272,7 +272,7 @@ while currentblock <= nBlocks
         seq3 = dis(1, 5, 9, 1, 12);
         elseif randtemp(currenttrialinblock) == 2  % Small mean difference
         seq1 = dis(1, 4, 9, 1, 12);
-        seq2 = dis(4, 5, 9, 1, 12);
+        seq2 = dis(1, 5, 9, 1, 12);
         seq3 = dis(1, 6, 9, 1, 12);
         elseif randtemp(currenttrialinblock) == 3  % Large mean difference
         seq1 = dis(1, 3, 9, 1, 12);
@@ -833,7 +833,7 @@ while currentblock <= nBlocks
 
         % Results matrix 
         if randtemp(currenttrialinblock) == 1
-            resultsMatrix(newtrial).TrialType = randtemp(1); % Type of trial (see definitions of sequences)
+            resultsMatrix(newtrial).TrialType = randtemp(currenttrialinblock); % Type of trial (see definitions of sequences)
             resultsMatrix(newtrial).S1Numbers = num2str(seq1); % List of numbers in the first sequence 
             resultsMatrix(newtrial).S1Mean = 5;
             resultsMatrix(newtrial).S1Variance = 1;
@@ -854,7 +854,7 @@ while currentblock <= nBlocks
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
                   resultsMatrix(newtrial).Srightmean = 5;
                   resultsMatrix(newtrial).Srightvariance = 4;
-                  resultsMatrix(newtrial).Sleftnumber = 2;
+                  resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
                   resultsMatrix(newtrial).Sleftmean = 5;
                   resultsMatrix(newtrial).Sleftvariance = 1;
@@ -920,8 +920,8 @@ while currentblock <= nBlocks
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
                   resultsMatrix(newtrial).Srightmean = 5;
-                  resultsMatrix(newtrial).Srightvariance = 20;
-                  resultsMatrix(newtrial).Sleftnumber = 1;
+                  resultsMatrix(newtrial).Srightvariance = 1;
+                  resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
                   resultsMatrix(newtrial).Sleftmean = 5;
                   resultsMatrix(newtrial).Sleftvariance = 1;
@@ -940,7 +940,7 @@ while currentblock <= nBlocks
         resultsMatrix(newtrial).Timeq2 = questionmarkOnset2 - secs2;
 
         elseif randtemp(currenttrialinblock) == 2
-        resultsMatrix(newtrial).TrialType = randtemp(2);
+        resultsMatrix(newtrial).TrialType = randtemp(currenttrialinblock);
         resultsMatrix(newtrial).S1Numbers = num2str(seq1);
         resultsMatrix(newtrial).S1Mean = 4;
         resultsMatrix(newtrial).S1Variance = 1;
@@ -1048,7 +1048,7 @@ while currentblock <= nBlocks
 
 
         elseif randtemp(currenttrialinblock) == 3
-        resultsMatrix(newtrial).TrialType = randtemp(3);
+        resultsMatrix(newtrial).TrialType = randtemp(currenttrialinblock);
         resultsMatrix(newtrial).S1Numbers = num2str(seq1);
         resultsMatrix(newtrial).S1Mean = 3;
         resultsMatrix(newtrial).S1Variance = 1;
@@ -1155,7 +1155,7 @@ while currentblock <= nBlocks
         resultsMatrix(newtrial).Timeq2 = secs2;
 
         elseif randtemp(currenttrialinblock) == 4
-        resultsMatrix(newtrial).TrialType = randtemp(4);
+        resultsMatrix(newtrial).TrialType = randtemp(currenttrialinblock);
         resultsMatrix(newtrial).S1Numbers = num2str(seq1);
         resultsMatrix(newtrial).S1Mean = 5;
         resultsMatrix(newtrial).S1Variance = 1;
