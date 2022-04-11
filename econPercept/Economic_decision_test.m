@@ -270,7 +270,7 @@ while currentblock <= nBlocks
         seq3 = dis(1, 5, 9, 1, 12);
         elseif randtemp(currenttrialinblock) == 2  % Small mean difference
         seq1 = dis(1, 4, 9, 1, 12);
-        seq2 = dis(4, 5, 9, 1, 12);
+        seq2 = dis(1, 5, 9, 1, 12);
         seq3 = dis(1, 6, 9, 1, 12);
         elseif randtemp(currenttrialinblock) == 3  % Large mean difference
         seq1 = dis(1, 3, 9, 1, 12);
@@ -836,18 +836,18 @@ while currentblock <= nBlocks
 
         % Results matrix 
         if randtemp(currenttrialinblock) == 1
-        resultsMatrix(newtrial).TrialType = randtemp(1);
+        resultsMatrix(newtrial).TrialType = randtemp(currenttrialinblock);
         resultsMatrix(newtrial).S1Numbers = num2str(seq1);
-        resultsMatrix(newtrial).S1Mean = 10;
-        resultsMatrix(newtrial).S1Variance = 20;
+        resultsMatrix(newtrial).S1Mean = 5;
+        resultsMatrix(newtrial).S1Variance = 1;
         resultsMatrix(newtrial).S1Position = randpos{1};
         resultsMatrix(newtrial).S2Numbers = num2str(seq2);
-        resultsMatrix(newtrial).S2Mean = 10;
-        resultsMatrix(newtrial).S2Variance = 10;
+        resultsMatrix(newtrial).S2Mean = 5;
+        resultsMatrix(newtrial).S2Variance = 4;
         resultsMatrix(newtrial).S2Position = randpos{2};
         resultsMatrix(newtrial).S3Numbers = num2str(seq3);
-        resultsMatrix(newtrial).S3Mean = 10;
-        resultsMatrix(newtrial).S3Variance = 10;
+        resultsMatrix(newtrial).S3Mean = 5;
+        resultsMatrix(newtrial).S3Variance = 1;
         resultsMatrix(newtrial).S3Position = randpos{3};
         resultsMatrix(newtrial).Key1 = KbName(keyCode1);
         resultsMatrix(newtrial).Timeq1 = questionmarkOnset1 - secs1;
@@ -855,106 +855,106 @@ while currentblock <= nBlocks
               if randpos{1} == right
                   resultsMatrix(newtrial).Srightnumber = 2;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 10;
-                  resultsMatrix(newtrial).Sleftnumber = 2;
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 4;
+                  resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
               elseif randpos{2} == right
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 20;
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
               elseif randpos{3} == right
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 20;
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 2;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 4;
               end
         elseif keyCode1(leftKey)
             if randpos{1} == left
                   resultsMatrix(newtrial).Srightnumber = 2;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 10;
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 4;
                   resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
               elseif randpos{2} == left
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 20;
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
               elseif randpos{3} == left
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 20;
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 2;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 4;
             end
         elseif keyCode1(upKey)
              if randpos{1} == up
                   resultsMatrix(newtrial).Srightnumber = 2;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 10;
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 4;
                   resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
               elseif randpos{2} == up
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 20;
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
               elseif randpos{3} == up
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 20;
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 2;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 4;
              end
         end
         resultsMatrix(newtrial).Key2 = KbName(keyCode2);
         resultsMatrix(newtrial).Timeq2 = questionmarkOnset2 - secs2;
 
         elseif randtemp(currenttrialinblock) == 2
-        resultsMatrix(newtrial).TrialType = randtemp(2);
+        resultsMatrix(newtrial).TrialType = randtemp(currenttrialinblock);
         resultsMatrix(newtrial).S1Numbers = num2str(seq1);
-        resultsMatrix(newtrial).S1Mean = 10;
-        resultsMatrix(newtrial).S1Variance = 20;
+        resultsMatrix(newtrial).S1Mean = 4;
+        resultsMatrix(newtrial).S1Variance = 1;
         resultsMatrix(newtrial).S1Position = randpos{1};
         resultsMatrix(newtrial).S2Numbers = num2str(seq2);
-        resultsMatrix(newtrial).S2Mean = 9;
-        resultsMatrix(newtrial).S2Variance = 10;
+        resultsMatrix(newtrial).S2Mean = 5;
+        resultsMatrix(newtrial).S2Variance = 4;
         resultsMatrix(newtrial).S2Position = randpos{2};
         resultsMatrix(newtrial).S3Numbers = num2str(seq3);
-        resultsMatrix(newtrial).S3Mean = 8;
-        resultsMatrix(newtrial).S3Variance = 10;
+        resultsMatrix(newtrial).S3Mean = 6;
+        resultsMatrix(newtrial).S3Variance = 1;
         resultsMatrix(newtrial).S3Position = randpos{3};
         resultsMatrix(newtrial).Key1 = KbName(keyCode1);
         resultsMatrix(newtrial).Timeq1 = secs1;
@@ -962,88 +962,88 @@ while currentblock <= nBlocks
               if randpos{1} == right
                   resultsMatrix(newtrial).Srightnumber = 2;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Srightmean = 9;
-                  resultsMatrix(newtrial).Srightvariance = 10;
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 4;
                   resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 8;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 6;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
               elseif randpos{2} == right
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 20;
+                  resultsMatrix(newtrial).Srightmean = 4;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 8;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 6;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
               elseif randpos{3} == right
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 20;
+                  resultsMatrix(newtrial).Srightmean = 4;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 2;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 9;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 4;
               end
         elseif keyCode1(leftKey)
             if randpos{1} == left
                   resultsMatrix(newtrial).Srightnumber = 2;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Srightmean = 9;
-                  resultsMatrix(newtrial).Srightvariance = 10;
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 4;
                   resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 8;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 6;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
               elseif randpos{2} == left
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 20;
+                  resultsMatrix(newtrial).Srightmean = 4;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 8;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 6;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
               elseif randpos{3} == left
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 20;
+                  resultsMatrix(newtrial).Srightmean = 4;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 2;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 9;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 4;
             end
         elseif keyCode1(upKey)
              if randpos{1} == up
                   resultsMatrix(newtrial).Srightnumber = 2;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Srightmean = 9;
-                  resultsMatrix(newtrial).Srightvariance = 10;
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 4;
                   resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 6;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
               elseif randpos{2} == up
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 20;
+                  resultsMatrix(newtrial).Srightmean = 4;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 8;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 6;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
               elseif randpos{3} == up
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 20;
+                  resultsMatrix(newtrial).Srightmean = 4;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 2;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 9;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 4;
              end
         end
         resultsMatrix(newtrial).Key2 = KbName(keyCode2);
@@ -1051,18 +1051,18 @@ while currentblock <= nBlocks
 
 
         elseif randtemp(currenttrialinblock) == 3
-        resultsMatrix(newtrial).TrialType = randtemp(3);
+        resultsMatrix(newtrial).TrialType = randtemp(currenttrialinblock);
         resultsMatrix(newtrial).S1Numbers = num2str(seq1);
-        resultsMatrix(newtrial).S1Mean = 20;
-        resultsMatrix(newtrial).S1Variance = 20;
+        resultsMatrix(newtrial).S1Mean = 3;
+        resultsMatrix(newtrial).S1Variance = 1;
         resultsMatrix(newtrial).S1Position = randpos{1};
         resultsMatrix(newtrial).S2Numbers = num2str(seq2);
-        resultsMatrix(newtrial).S2Mean = 14;
-        resultsMatrix(newtrial).S2Variance = 10;
+        resultsMatrix(newtrial).S2Mean = 5;
+        resultsMatrix(newtrial).S2Variance = 1;
         resultsMatrix(newtrial).S2Position = randpos{2};
         resultsMatrix(newtrial).S3Numbers = num2str(seq3);
-        resultsMatrix(newtrial).S3Mean = 8;
-        resultsMatrix(newtrial).S3Variance = 10;
+        resultsMatrix(newtrial).S3Mean = 7;
+        resultsMatrix(newtrial).S3Variance = 1;
         resultsMatrix(newtrial).S3Position = randpos{3};
         resultsMatrix(newtrial).Key1 = KbName(keyCode1);
         resultsMatrix(newtrial).Timeq1 = secs1;
@@ -1070,106 +1070,106 @@ while currentblock <= nBlocks
               if randpos{1} == right
                   resultsMatrix(newtrial).Srightnumber = 2;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 10;
-                  resultsMatrix(newtrial).Sleftnumber = 2;
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 1;
+                  resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 7;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
               elseif randpos{2} == right
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 20;
+                  resultsMatrix(newtrial).Srightmean = 3;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 7;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
               elseif randpos{3} == right
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 20;
+                  resultsMatrix(newtrial).Srightmean = 3;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 2;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
               end
         elseif keyCode1(leftKey)
             if randpos{1} == left
                   resultsMatrix(newtrial).Srightnumber = 2;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 10;
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 7;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
               elseif randpos{2} == left
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 20;
+                  resultsMatrix(newtrial).Srightmean = 3;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 7;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
               elseif randpos{3} == left
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 20;
+                  resultsMatrix(newtrial).Srightmean = 3;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 2;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
             end
         elseif keyCode1(upKey)
              if randpos{1} == up
                   resultsMatrix(newtrial).Srightnumber = 2;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 10;
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 7;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
               elseif randpos{2} == up
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 20;
+                  resultsMatrix(newtrial).Srightmean = 3;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 7;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
               elseif randpos{3} == up
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 20;
+                  resultsMatrix(newtrial).Srightmean = 3;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 2;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
              end
         end
         resultsMatrix(newtrial).Key2 = KbName(keyCode2);
         resultsMatrix(newtrial).Timeq2 = secs2;
 
         elseif randtemp(currenttrialinblock) == 4
-        resultsMatrix(newtrial).TrialType = randtemp(4);
+        resultsMatrix(newtrial).TrialType = randtemp(currenttrialinblock);
         resultsMatrix(newtrial).S1Numbers = num2str(seq1);
-        resultsMatrix(newtrial).S1Mean = 10;
-        resultsMatrix(newtrial).S1Variance = 20;
+        resultsMatrix(newtrial).S1Mean = 5;
+        resultsMatrix(newtrial).S1Variance = 1;
         resultsMatrix(newtrial).S1Position = randpos{1};
         resultsMatrix(newtrial).S2Numbers = num2str(seq2);
-        resultsMatrix(newtrial).S2Mean = 10;
-        resultsMatrix(newtrial).S2Variance = 10;
+        resultsMatrix(newtrial).S2Mean = 5;
+        resultsMatrix(newtrial).S2Variance = 4;
         resultsMatrix(newtrial).S2Position = randpos{2};
         resultsMatrix(newtrial).S3Numbers = num2str(seq3);
-        resultsMatrix(newtrial).S3Mean = 10;
-        resultsMatrix(newtrial).S3Variance = 10;
+        resultsMatrix(newtrial).S3Mean = 5;
+        resultsMatrix(newtrial).S3Variance = 1;
         resultsMatrix(newtrial).S3Position = randpos{3};
         resultsMatrix(newtrial).Key1 = KbName(keyCode1);
         resultsMatrix(newtrial).Timeq1 = secs1;
@@ -1177,150 +1177,150 @@ while currentblock <= nBlocks
              if randpos{1} == left    
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 20;
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   if rand3{1} == seq3
                   resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
                   elseif rand3{1} == seq2
                   resultsMatrix(newtrial).Sleftnumber = 2;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 4;
                   end
               elseif randpos{2} == left
                   resultsMatrix(newtrial).Srightnumber = 2;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 10;
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 4;
                   if rand2{1} == seq1
                   resultsMatrix(newtrial).Sleftnumber = 1;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 20;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
                   elseif rand2{1} == seq3
                   resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10; 
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 1; 
                   end
              elseif randpos{3} == left
                   resultsMatrix(newtrial).Srightnumber = 3;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 10;
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   if rand1{1} == seq1
                   resultsMatrix(newtrial).Sleftnumber = 1;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 20;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
                   elseif rand1{1} == seq2
                   resultsMatrix(newtrial).Sleftnumber = 2;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10; 
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 4; 
                   end 
              end
         elseif keyCode1(rightKey)
              if randpos{1} == right    
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 20;
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   if rand3{1} == seq3
                   resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
                   elseif rand3{1} == seq2
                   resultsMatrix(newtrial).Sleftnumber = 2;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 4;
                   end
               elseif randpos{2} == right
                   resultsMatrix(newtrial).Srightnumber = 2;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 10;
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 4;
                   if rand2{1} == seq1
                   resultsMatrix(newtrial).Sleftnumber = 1;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 20;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
                   elseif rand2{1} == seq3
                   resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10; 
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 1; 
                   end
               elseif randpos{3} == right
                   resultsMatrix(newtrial).Srightnumber = 3;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 10;
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   if rand1{1} == seq1
                   resultsMatrix(newtrial).Sleftnumber = 1;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 20;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
                   elseif rand1{1} == seq2
                   resultsMatrix(newtrial).Sleftnumber = 2;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10; 
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 4; 
                   end 
              end
         elseif keyCode1(upKey)
               if randpos{1} == up   
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 20;
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   if rand3{1} == seq3
                   resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
                   elseif rand3{1} == seq2
                   resultsMatrix(newtrial).Sleftnumber = 2;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 4;
                   end
               elseif randpos{2} == up
                   resultsMatrix(newtrial).Srightnumber = 2;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 10;
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 4;
                   if rand2{1} == seq1
                   resultsMatrix(newtrial).Sleftnumber = 1;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 20;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
                   elseif rand2{1} == seq3
                   resultsMatrix(newtrial).Sleftnumber = 3;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10; 
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 1; 
                   end
              elseif randpos{3} == up
                   resultsMatrix(newtrial).Srightnumber = 3;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Srightmean = 10;
-                  resultsMatrix(newtrial).Srightvariance = 10;
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   if rand1{1} == seq1
                   resultsMatrix(newtrial).Sleftnumber = 1;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 20;
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
                   elseif rand1{1} == seq2
                   resultsMatrix(newtrial).Sleftnumber = 2;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 10;
-                  resultsMatrix(newtrial).Sleftvariance = 10; 
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 4; 
                   end 
               end
         end
