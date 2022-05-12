@@ -906,17 +906,10 @@ if keyCode1(leftKey)
           resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
           resultsMatrix(newtrial).Srightmean = 5;
           resultsMatrix(newtrial).Srightvariance = 1;
-          if rand3{1} == seq3
-          resultsMatrix(newtrial).Sleftnumber = 3;
-          resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-          resultsMatrix(newtrial).Sleftmean = 5;
-          resultsMatrix(newtrial).Sleftvariance = 1;
-          elseif rand3{1} == seq2
           resultsMatrix(newtrial).Sleftnumber = 2;
           resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
           resultsMatrix(newtrial).Sleftmean = 5;
           resultsMatrix(newtrial).Sleftvariance = 4;
-          end
       elseif randpos{2} == left
           resultsMatrix(newtrial).Srightnumber = 2;
           resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
@@ -938,12 +931,6 @@ if keyCode1(leftKey)
           resultsMatrix(newtrial).Srightnumbers = num2str(seq3);
           resultsMatrix(newtrial).Srightmean = 5;
           resultsMatrix(newtrial).Srightvariance = 1;
-          if rand1{1} == seq1
-          resultsMatrix(newtrial).Sleftnumber = 1;
-          resultsMatrix(newtrial).Sleftnumbers = num2str(seq1);
-          resultsMatrix(newtrial).Sleftmean = 5;
-          resultsMatrix(newtrial).Sleftvariance = 1;
-          elseif rand1{1} == seq2
           resultsMatrix(newtrial).Sleftnumber = 2;
           resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
           resultsMatrix(newtrial).Sleftmean = 5;
@@ -956,17 +943,10 @@ elseif keyCode1(rightKey)
           resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
           resultsMatrix(newtrial).Srightmean = 5;
           resultsMatrix(newtrial).Srightvariance = 1;
-          if rand3{1} == seq3
-          resultsMatrix(newtrial).Sleftnumber = 3;
-          resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-          resultsMatrix(newtrial).Sleftmean = 5;
-          resultsMatrix(newtrial).Sleftvariance = 1;
-          elseif rand3{1} == seq2
           resultsMatrix(newtrial).Sleftnumber = 2;
           resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
           resultsMatrix(newtrial).Sleftmean = 5;
           resultsMatrix(newtrial).Sleftvariance = 4;
-          end
       elseif randpos{2} == right
           resultsMatrix(newtrial).Srightnumber = 2;
           resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
@@ -988,17 +968,10 @@ elseif keyCode1(rightKey)
           resultsMatrix(newtrial).Srightnumbers = num2str(seq3);
           resultsMatrix(newtrial).Srightmean = 5;
           resultsMatrix(newtrial).Srightvariance = 1;
-          if rand1{1} == seq1
-          resultsMatrix(newtrial).Sleftnumber = 1;
-          resultsMatrix(newtrial).Sleftnumbers = num2str(seq1);
-          resultsMatrix(newtrial).Sleftmean = 5;
-          resultsMatrix(newtrial).Sleftvariance = 1;
-          elseif rand1{1} == seq2
           resultsMatrix(newtrial).Sleftnumber = 2;
           resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
           resultsMatrix(newtrial).Sleftmean = 5;
           resultsMatrix(newtrial).Sleftvariance = 4; 
-          end 
      end
 elseif keyCode1(upKey)
       if randpos{1} == up   
@@ -1006,12 +979,6 @@ elseif keyCode1(upKey)
           resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
           resultsMatrix(newtrial).Srightmean = 5;
           resultsMatrix(newtrial).Srightvariance = 1;
-          if rand3{1} == seq3
-          resultsMatrix(newtrial).Sleftnumber = 3;
-          resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-          resultsMatrix(newtrial).Sleftmean = 5;
-          resultsMatrix(newtrial).Sleftvariance = 1;
-          elseif rand3{1} == seq2
           resultsMatrix(newtrial).Sleftnumber = 2;
           resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
           resultsMatrix(newtrial).Sleftmean = 5;
@@ -1038,17 +1005,10 @@ elseif keyCode1(upKey)
           resultsMatrix(newtrial).Srightnumbers = num2str(seq3);
           resultsMatrix(newtrial).Srightmean = 5;
           resultsMatrix(newtrial).Srightvariance = 1;
-          if rand1{1} == seq1
-          resultsMatrix(newtrial).Sleftnumber = 1;
-          resultsMatrix(newtrial).Sleftnumbers = num2str(seq1);
-          resultsMatrix(newtrial).Sleftmean = 5;
-          resultsMatrix(newtrial).Sleftvariance = 1;
-          elseif rand1{1} == seq2
           resultsMatrix(newtrial).Sleftnumber = 2;
           resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
           resultsMatrix(newtrial).Sleftmean = 5;
           resultsMatrix(newtrial).Sleftvariance = 4; 
-          end 
       end
 end
 
