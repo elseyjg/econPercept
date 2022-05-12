@@ -422,7 +422,7 @@ elseif randtemp(currenttrialinblock) == 4
        if randpos{1} == left    
        Screen('TextSize', window, 120);
        Screen('DrawText', window, num2str(seq1(currentFrame2)), rightX, rightY, [1 1 1]);
-       Screen('DrawText', window,  num2str(rand3{1}(currentFrame2)), leftX, leftY, [1 1 1]);
+       Screen('DrawText', window,  num2str(seq2(currentFrame2)), leftX, leftY, [1 1 1]);
        Screen('Flip', window);
        WaitSecs(0.5);
        Screen('FillRect', window, black);
@@ -442,7 +442,7 @@ elseif randtemp(currenttrialinblock) == 4
        elseif randpos{3} == left
        Screen('TextSize', window, 120);
        Screen('DrawText', window, num2str(seq3(currentFrame2)), rightX, rightY, [1 1 1]);
-       Screen('DrawText', window,  num2str(rand1{1}(currentFrame2)), leftX, leftY, [1 1 1]);
+       Screen('DrawText', window,  num2str(seq2(currentFrame2)), leftX, leftY, [1 1 1]);
        Screen('Flip', window);
        WaitSecs(0.5);
        Screen('FillRect', window, black);
@@ -454,7 +454,7 @@ elseif randtemp(currenttrialinblock) == 4
        if randpos{1} == right    
        Screen('TextSize', window, 120);
        Screen('DrawText', window, num2str(seq1(currentFrame2)), rightX, rightY, [1 1 1]);
-       Screen('DrawText', window,  num2str(rand3{1}(currentFrame2)), leftX, leftY, [1 1 1]);
+       Screen('DrawText', window,  num2str(seq2(currentFrame2)), leftX, leftY, [1 1 1]);
        Screen('Flip', window);
        WaitSecs(0.5);
        Screen('FillRect', window, black);
@@ -474,7 +474,7 @@ elseif randtemp(currenttrialinblock) == 4
        elseif randpos{3} == right
        Screen('TextSize', window, 120);
        Screen('DrawText', window, num2str(seq3(currentFrame2)), rightX, rightY, [1 1 1]);
-       Screen('DrawText', window,  num2str(rand1{1}(currentFrame2)), leftX, leftY, [1 1 1]);
+       Screen('DrawText', window,  num2str(seq2(currentFrame2)), leftX, leftY, [1 1 1]);
        Screen('Flip', window);
        WaitSecs(0.5);
        Screen('FillRect', window, black);
@@ -506,7 +506,7 @@ elseif randtemp(currenttrialinblock) == 4
        elseif randpos{3} == up
        Screen('TextSize', window, 120);
        Screen('DrawText', window, num2str(seq3(currentFrame2)), rightX, rightY, [1 1 1]);
-       Screen('DrawText', window,  num2str(rand1{1}(currentFrame2)), leftX, leftY, [1 1 1]);
+       Screen('DrawText', window,  num2str(seq2(currentFrame2)), leftX, leftY, [1 1 1]);
        Screen('Flip', window);
        WaitSecs(0.5);
        Screen('FillRect', window, black);
