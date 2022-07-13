@@ -190,10 +190,7 @@ newtrial = 0;
 %----------------------------------------------------------------------
 
 % Make a  matrix which which will hold all of our results
-resultsMatrix = struct('TrialType', {}, 'S1Numbers', {}, 'S1Mean', {}, 'S1Variance', {}, 'S1Position', {}, ...
-'S2Numbers', {}, 'S2Mean', {}, 'S2Variance', {}, 'S2Position', {}, ...
-'S3Numbers', {}, 'S3Mean', {}, 'S3Variance', {}, 'S3Position', {}, 'Key1', {},  'Timeq1', {}, ...
-'Srightnumber', {}, 'Srightnumbers', {}, 'Srightmean', {}, 'Srightvariance', {}, ...
+resultsMatrix = struct('Srightnumber', {}, 'Srightnumbers', {}, 'Srightmean', {}, 'Srightvariance', {}, ...
 'Sleftnumber', {}, 'Sleftnumbers', {}, 'Sleftmean', {}, 'Sleftvariance', {}, 'Key2', {},  'Timeq2', {});
 
 
@@ -214,19 +211,13 @@ if ~MouseInsteadOfGaze
 end
 
 % Experimental instructions
-line1 = 'You will see a sequence of numbers in 3 different positions';
-line2 = 'Your task is to find the sequence with the highest numbers overall';
-line3 = 'You will do this in 2 steps';
-line4 = 'When the first question mark appears, indicate the sequence with the lowest numbers';
+line1 = 'You will see a sequence of numbers in 2 different positions';
+line2 = 'Your task is to find the sequence with the highest/lowest numbers';
+line3 = 'You will be instructed as to which choice to make at the start of each sequence';
+line4 = 'When the question mark appears, indicate your choice';
 line5 = 'by pressing the corresponding arrow key';
-line6 = 'Press the left arrow key for the left sequence, the right arrow key for the right sequences';
-line7 = 'and the up arrow key for the upper sequence';
-line8 = 'This sequence will be removed and you will see the remaining 2 sequences of numbers again';
-line9 = 'When the second question mark appears, indicate the sequence with';
-line10 = 'the highest numbers from the remaining 2';
-line11 = 'Press any key to see the next instruction';
-line12 = 'At the end of the trial, you will be awarded a sum of money associated with your decisions';
-line13 = 'Focus on the central cross at all times';
+line6 = 'At the end of the experiment, you will be awarded a sum of money associated with your decisions';
+line7 = 'Focus on the central cross at all times';
  
 % Draw all the text in one go
 Screen('TextSize', window, 25);
@@ -237,17 +228,9 @@ Screen('DrawText', window, line4, screenXpixels*0.1, screenYpixels*0.325, white)
 Screen('DrawText', window, line5, screenXpixels*0.1, screenYpixels*0.40, white);
 Screen('DrawText', window, line6, screenXpixels*0.1, screenYpixels*0.475, white);
 Screen('DrawText', window, line7, screenXpixels*0.1, screenYpixels*0.55, white);
-Screen('DrawText', window, line8, screenXpixels*0.1, screenYpixels*0.625, white);
-Screen('DrawText', window, line9, screenXpixels*0.1, screenYpixels*0.70, white);
-Screen('DrawText', window, line10, screenXpixels*0.1, screenYpixels*0.775, white);
-Screen('DrawText', window, line11, screenXpixels*0.1, screenYpixels*0.85, white);
 Screen('Flip', window);  
 KbStrokeWait;
 
-Screen('DrawText', window, line12, screenXpixels*0.1  , screenYpixels*0.4, white);
-Screen('DrawText', window, line13, screenXpixels*0.1  , screenYpixels*0.5, white);
-Screen('Flip', window);
-KbStrokeWait;
 
 currentblock = 1;
 while currentblock <= nBlocks
@@ -263,24 +246,20 @@ while currentblock <= nBlocks
         % Counting up the trial variable
         newtrial = newtrial + 1;
 
-        % Derive distributions    
-        if randtemp(currenttrialinblock) == 1 % No mean difference (control)
+        % Define distributions 
+        if randtemp(currenttrialinblock) == 1 % No mean difference (brightest)
         seq1 = dis(1, 5, 9, 1, 12);
         seq2 = dis(4, 5, 9, 1, 12);
-        seq3 = dis(1, 5, 9, 1, 12);
-        elseif randtemp(currenttrialinblock) == 2  % Small mean difference
-        seq1 = dis(1, 4, 9, 1, 12);
-        seq2 = dis(1, 5, 9, 1, 12);
-        seq3 = dis(1, 6, 9, 1, 12);
-        elseif randtemp(currenttrialinblock) == 3  % Large mean difference
+        elseif randtemp(currenttrialinblock) == 2  % No mean difference (darkest)
+        seq1 = dis(1, 5, 9, 1, 12);
+        seq2 = dis(4, 5, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 3  % Large mean difference (brightest)
         seq1 = dis(1, 3, 9, 1, 12);
         seq2 = dis(1, 5, 9, 1, 12);
-        seq3 = dis(1, 7, 9, 1, 12);
-        elseif randtemp(currenttrialinblock) == 4 % No mean difference (manipulation)
-        seq1 = dis(1, 5, 9, 1, 12);
-        seq2 = dis(4, 5, 9, 1, 12);
-        seq3 = dis(1, 5, 9, 1, 12);
-        end 
+        elseif randtemp(currenttrialinblock) == 4  % Large mean difference (darkest)
+        seq1 = dis(1, 3, 9, 1, 12);
+        seq2 = dis(1, 5, 9, 1, 12);
+        end  
 
         % Randomise position of sequences
         randpos = Shuffle({left, right, up});
@@ -393,6 +372,21 @@ while currentblock <= nBlocks
             keyboard
         end
         
+        % Give choice instruction
+        Screen('TextSize', window, 120);
+        if randtemp(currenttrialinblock) == 1
+            Screen('DrawText', window, 'Accept the highest value sequence', screenXpixels*0.48, screenYpixels*0.45, white);
+        elseif randtemp(currenttrialinblock) == 2
+            Screen('DrawText', window, 'Reject the lowest value sequence', screenXpixels*0.48, screenYpixels*0.45, white);
+        elseif randtemp(currenttrialinblock) == 3
+            Screen('DrawText', window, 'Accept the highest value sequence ', screenXpixels*0.48, screenYpixels*0.45, white);
+        elseif randtemp(currenttrialinblock) == 4
+            Screen('DrawText', window, 'Choose the darkest light', screenXpixels*0.48, screenYpixels*0.45, white);
+        end
+            Screen('Flip', window);
+        WaitSecs(0.5);
+        
+        
         % Present stimulus
         currentFrame1 = 1;
         while currentFrame1 <= nFrames   
@@ -417,7 +411,6 @@ while currentblock <= nBlocks
             Screen('TextSize', window, 120);
             Screen('DrawText', window, num2str(seq1(currentFrame1)), randpos{1}(1), randpos{1}(2), [1 1 1]);
             Screen('DrawText', window, num2str(seq2(currentFrame1)), randpos{2}(1), randpos{2}(2), [1 1 1]);
-            Screen('DrawText', window, num2str(seq3(currentFrame1)), randpos{3}(1), randpos{3}(2), [1 1 1]);
             Screen('Flip', window);
             WaitSecs(0.75);
             Screen('FillRect', window, black);
@@ -446,7 +439,7 @@ while currentblock <= nBlocks
         % Make sure that only arrow keys are pressed
         number_tries = 1;
         while number_tries < 3
-            if ismember(KbName(keyCode1), {'LeftArrow' 'RightArrow' 'UpArrow'})
+            if ismember(KbName(keyCode1), {'LeftArrow' 'RightArrow'})
             break;
             else
                 Screen('TextSize', window, 25);
@@ -469,523 +462,77 @@ while currentblock <= nBlocks
             end
         end
 
-        %% Second stage
-        Screen('FillRect', window, black);
-        Screen('Flip', window);
-
-        % Fixation cross
-        Screen('DrawLines', window, allCoords,lineWidthPix, white, [xCenter yCenter], 2);
-        Screen('Flip', window, [], 1);
-
-        if ~MouseInsteadOfGaze
-            status=Eyelink('message','Trial Start');
-            if status~=0
-                error(['message error, status: ', num2str(status)])
-            end
-        end
-
-        ListenChar(2)
-        if ~MouseInsteadOfGaze
-            sample = Eyelink('NewestFloatSample');
-            %             disp([sample.gx(whichEye),sample.gy(whichEye)])
-        else
-            [sample.gx(whichEye),sample.gy(whichEye),buttons] = GetMouse(window);
-        end
-        % Eye Position Data
-        RECORD_DATA{entryNumber, 1} = currenttrialinblock;
-        RECORD_DATA{entryNumber, 2} = GetSecs;
-        RECORD_DATA{entryNumber, 3} = 'Eye Position';
-        RECORD_DATA{entryNumber, 4} = [sample.gx(whichEye), sample.gy(whichEye)];
-        entryNumber = entryNumber + 1;
-
-        Screen('DrawLines', window, allCoords,lineWidthPix, white, [xCenter yCenter], 2);
-        [VBLTimestamp StimulusOnset Fliptime] = Screen('Flip', window, 0, 1);
-
-        if(sample.gx(whichEye) >= xCenter-FW && sample.gx(whichEye) <= xCenter+FW && sample.gy(whichEye) >= yCenter-FW && sample.gy(whichEye) <= yCenter+FW)
-            if(timer_set == 0)
-                current_time = GetSecs;
-                timer_set = 1;
-            else
-                running_time = GetSecs - current_time;
-                if(running_time >= numSecs)
-                    crosshairFixationTimePass = 1;
-                end
-            end
-            %sample = Eyelink('NewestFloatSample');
-            if(crosshairFixationTimePass == 1)
-                RECORD_DATA{entryNumber, 1} = currenttrialinblock;
-                RECORD_DATA{entryNumber, 2} = GetSecs;
-                RECORD_DATA{entryNumber, 3} = 'Central Cross Fixation';
-                RECORD_DATA{entryNumber, 4} = [sample.gx(whichEye), sample.gy(whichEye), numSecs];
-                entryNumber = entryNumber + 1;
-                center_focused = 1;
-            end
-        else
-            timer_set = 0;
-            center_focused = 0;
-        end
-        [keyIsDown,secs, keyCode, deltaSecs] = KbCheck();
-        if(keyCode(Q_ButtonPress))% Someone pressed 'q'
-            RECORD_DATA{entryNumber, 1} = currenttrialinblock;
-            RECORD_DATA{entryNumber, 2} = GetSecs;
-            RECORD_DATA{entryNumber, 3} = 'Calibrate_key Pressed';
-            RECORD_DATA{entryNumber, 4} = 0;
-            entryNumber = entryNumber + 1;
-            calibrate_flag = 1;
-            %             disp(find(keyCode))%*
-            return;
-        end
-        %         elseif(keyCode(End_ButtonPress))% Someone pressed 'End'
-        if(keyCode(End_ButtonPress))% Someone pressed 'End'
-            RECORD_DATA{entryNumber, 1} = currenttrialinblock;
-            RECORD_DATA{entryNumber, 2} = GetSecs;
-            RECORD_DATA{entryNumber, 3} = 'Quit_key Pressed';
-            RECORD_DATA{entryNumber, 4} = 0;
-            entryNumber = entryNumber + 1;
-            quit_flag = 1;
-            %             disp(find(keyCode))%*
-            return;
-        else
-        end
-        if toc > maxTrlTime
-            if ~MouseInsteadOfGaze
-                if ~DebugFlag
-                    Eyelink('StopRecording');
-                    Eyelink('Shutdown');
-                end
-            end
-            Screen('CloseAll');
-            sca;
-            ListenChar(0)
-            keyboard
-        end
         
-        % Present stimulus
-        currentFrame2 = 1;
-        while currentFrame2 <= nFrames
-            if ~MouseInsteadOfGaze
-                sample = Eyelink('NewestFloatSample');
-            else
-                [sample.gx(whichEye),sample.gy(whichEye),buttons] = GetMouse(window);
-            end
-            if(sample.gx(whichEye) >= xCenter-FW && sample.gx(whichEye) <= xCenter+FW && sample.gy(whichEye) >= yCenter-FW && sample.gy(whichEye) <= yCenter+FW)
-                center_focused = 1;
-                redoTrialFlag = 0;
-            else
-                center_focused = 0;
-                currenttrialinblock = currenttrialinblock-1;
-                redoTrialFlag = 1;
-            end   
-            if redoTrialFlag == 1
-                break
-            end
-            
-            Screen('DrawLines', window, allCoords,lineWidthPix, white, [xCenter yCenter], 2);
-            if randtemp(currenttrialinblock) < 4
-                if keyCode1(escapeKey)
-                   ShowCursor;  
-                   sca;
-                   return
-                elseif keyCode1(leftKey)
-                   if randpos{1} == left    
-                   Screen('TextSize', window, 120);
-                   Screen('DrawText', window, num2str(seq2(currentFrame2)), rightX, rightY, [1 1 1]);
-                   Screen('DrawText', window,  num2str(seq3(currentFrame2)), leftX, leftY, [1 1 1]);
-                   Screen('Flip', window);
-                   WaitSecs(0.5);
-                   Screen('FillRect', window, black);
-                   Screen('DrawLines', window, allCoords,lineWidthPix, white, [xCenter yCenter], 2);
-                   Screen('Flip', window);
-                   WaitSecs(0.1);
-                   elseif randpos{2} == left
-                   Screen('TextSize', window, 120);
-                   Screen('DrawText', window, num2str(seq1(currentFrame2)), rightX, rightY, [1 1 1]);
-                   Screen('DrawText', window,  num2str(seq3(currentFrame2)), leftX, leftY, [1 1 1]);
-                   Screen('Flip', window);
-                   WaitSecs(0.5);
-                   Screen('FillRect', window, black);
-                   Screen('DrawLines', window, allCoords,lineWidthPix, white, [xCenter yCenter], 2);
-                   Screen('Flip', window);
-                   WaitSecs(0.1);
-                   elseif randpos{3} == left
-                   Screen('TextSize', window, 120);
-                   Screen('DrawText', window, num2str(seq1(currentFrame2)), rightX, rightY, [1 1 1]);
-                   Screen('DrawText', window,  num2str(seq2(currentFrame2)), leftX, leftY, [1 1 1]);
-                   Screen('Flip', window);
-                   WaitSecs(0.5);
-                   Screen('FillRect', window, black);
-                   Screen('DrawLines', window, allCoords,lineWidthPix, white, [xCenter yCenter], 2);
-                   Screen('Flip', window);
-                   WaitSecs(0.1);
-                   end
-                elseif keyCode1(rightKey)
-                   if randpos{1} == right    
-                   Screen('TextSize', window, 120);
-                   Screen('DrawText', window, num2str(seq2(currentFrame2)), rightX, rightY, [1 1 1]);
-                   Screen('DrawText', window,  num2str(seq3(currentFrame2)), leftX, leftY, [1 1 1]);
-                   Screen('Flip', window);
-                   WaitSecs(0.5);
-                   Screen('FillRect', window, black);
-                   Screen('DrawLines', window, allCoords,lineWidthPix, white, [xCenter yCenter], 2);
-                   Screen('Flip', window);
-                   WaitSecs(0.1);
-                   elseif randpos{2} == right
-                   Screen('TextSize', window, 120);
-                   Screen('DrawText', window, num2str(seq1(currentFrame2)), rightX, rightY, [1 1 1]);
-                   Screen('DrawText', window,  num2str(seq3(currentFrame2)), leftX, leftY, [1 1 1]);
-                   Screen('Flip', window);
-                   WaitSecs(0.5);
-                   Screen('FillRect', window, black);
-                   Screen('DrawLines', window, allCoords,lineWidthPix, white, [xCenter yCenter], 2);
-                   Screen('Flip', window);
-                   WaitSecs(0.1);
-                   elseif randpos{3} == right
-                   Screen('TextSize', window, 120);
-                   Screen('DrawText', window, num2str(seq1(currentFrame2)), rightX, rightY, [1 1 1]);
-                   Screen('DrawText', window,  num2str(seq2(currentFrame2)), leftX, leftY, [1 1 1]);
-                   Screen('Flip', window);
-                   WaitSecs(0.5);
-                   Screen('FillRect', window, black);
-                   Screen('DrawLines', window, allCoords,lineWidthPix, white, [xCenter yCenter], 2);
-                   Screen('Flip', window);
-                   WaitSecs(0.1);
-                   end
-                elseif keyCode1(upKey)
-                   if randpos{1} == up    
-                   Screen('TextSize', window, 120);
-                   Screen('DrawText', window, num2str(seq2(currentFrame2)), rightX, rightY, [1 1 1]);
-                   Screen('DrawText', window,  num2str(seq3(currentFrame2)), leftX, leftY, [1 1 1]);
-                   Screen('Flip', window);
-                   WaitSecs(0.5);
-                   Screen('FillRect', window, black);
-                   Screen('DrawLines', window, allCoords,lineWidthPix, white, [xCenter yCenter], 2);
-                   Screen('Flip', window);
-                   WaitSecs(0.1);
-                   elseif randpos{2} == up
-                   Screen('TextSize', window, 120);
-                   Screen('DrawText', window, num2str(seq1(currentFrame2)), rightX, rightY, [1 1 1]);
-                   Screen('DrawText', window,  num2str(seq3(currentFrame2)), leftX, leftY, [1 1 1]);
-                   Screen('Flip', window);
-                   WaitSecs(0.5);
-                   Screen('FillRect', window, black);
-                   Screen('DrawLines', window, allCoords,lineWidthPix, white, [xCenter yCenter], 2);
-                   Screen('Flip', window);
-                   WaitSecs(0.1);
-                   elseif randpos{3} == up
-                   Screen('TextSize', window, 120);
-                   Screen('DrawText', window, num2str(seq1(currentFrame2)), rightX, rightY, [1 1 1]);
-                   Screen('DrawText', window,  num2str(seq2(currentFrame2)), leftX, leftY, [1 1 1]);
-                   Screen('Flip', window);
-                   WaitSecs(0.5);
-                   Screen('FillRect', window, black);
-                   Screen('DrawLines', window, allCoords,lineWidthPix, white, [xCenter yCenter], 2);
-                   Screen('Flip', window);
-                   WaitSecs(0.1);
-                   end
-                end
-
-            elseif randtemp(currenttrialinblock) == 4
-               if keyCode1(leftKey)
-                   if randpos{1} == left    
-                   Screen('TextSize', window, 120);
-                   Screen('DrawText', window, num2str(seq1(currentFrame2)), rightX, rightY, [1 1 1]);
-                   Screen('DrawText', window,  num2str(seq2(currentFrame2)), leftX, leftY, [1 1 1]);
-                   Screen('Flip', window);
-                   WaitSecs(0.5);
-                   Screen('FillRect', window, black);
-                   Screen('DrawLines', window, allCoords,lineWidthPix, white, [xCenter yCenter], 2);
-                   Screen('Flip', window);
-                   WaitSecs(0.1);
-                   elseif randpos{2} == left
-                   Screen('TextSize', window, 120);
-                   Screen('DrawText', window, num2str(seq2(currentFrame2)), rightX, rightY, [1 1 1]);
-                   Screen('DrawText', window,  num2str(rand2{1}(currentFrame2)), leftX, leftY, [1 1 1]);
-                   Screen('Flip', window);
-                   WaitSecs(0.5);
-                   Screen('FillRect', window, black);
-                   Screen('DrawLines', window, allCoords,lineWidthPix, white, [xCenter yCenter], 2);
-                   Screen('Flip', window);
-                   WaitSecs(0.1);
-                   elseif randpos{3} == left
-                   Screen('TextSize', window, 120);
-                   Screen('DrawText', window, num2str(seq3(currentFrame2)), rightX, rightY, [1 1 1]);
-                   Screen('DrawText', window,  num2str(seq2(currentFrame2)), leftX, leftY, [1 1 1]);
-                   Screen('Flip', window);
-                   WaitSecs(0.5);
-                   Screen('FillRect', window, black);
-                   Screen('DrawLines', window, allCoords,lineWidthPix, white, [xCenter yCenter], 2);
-                   Screen('Flip', window);
-                   WaitSecs(0.1);
-                   end
-                elseif keyCode1(rightKey)
-                   if randpos{1} == right    
-                   Screen('TextSize', window, 120);
-                   Screen('DrawText', window, num2str(seq1(currentFrame2)), rightX, rightY, [1 1 1]);
-                   Screen('DrawText', window,  num2str(seq2(currentFrame2)), leftX, leftY, [1 1 1]);
-                   Screen('Flip', window);
-                   WaitSecs(0.5);
-                   Screen('FillRect', window, black);
-                   Screen('DrawLines', window, allCoords,lineWidthPix, white, [xCenter yCenter], 2);
-                   Screen('Flip', window);
-                   WaitSecs(0.1);
-                   elseif randpos{2} == right
-                   Screen('TextSize', window, 120);
-                   Screen('DrawText', window, num2str(seq2(currentFrame2)), rightX, rightY, [1 1 1]);
-                   Screen('DrawText', window,  num2str(rand2{1}(currentFrame2)), leftX, leftY, [1 1 1]);
-                   Screen('Flip', window);
-                   WaitSecs(0.5);
-                   Screen('FillRect', window, black);
-                   Screen('DrawLines', window, allCoords,lineWidthPix, white, [xCenter yCenter], 2);
-                   Screen('Flip', window);
-                   WaitSecs(0.1);
-                   elseif randpos{3} == right
-                   Screen('TextSize', window, 120);
-                   Screen('DrawText', window, num2str(seq3(currentFrame2)), rightX, rightY, [1 1 1]);
-                   Screen('DrawText', window,  num2str(seq2(currentFrame2)), leftX, leftY, [1 1 1]);
-                   Screen('Flip', window);
-                   WaitSecs(0.5);
-                   Screen('FillRect', window, black);
-                   Screen('DrawLines', window, allCoords,lineWidthPix, white, [xCenter yCenter], 2);
-                   Screen('Flip', window);
-                   WaitSecs(0.1);
-                   end
-                elseif keyCode1(upKey)
-                  if randpos{1} == up    
-                   Screen('TextSize', window, 120);
-                   Screen('DrawText', window, num2str(seq1(currentFrame2)), rightX, rightY, [1 1 1]);
-                   Screen('DrawText', window,  num2str(seq2(currentFrame2)), leftX, leftY, [1 1 1]);
-                   Screen('Flip', window);
-                   WaitSecs(0.5);
-                   Screen('FillRect', window, black);
-                   Screen('DrawLines', window, allCoords,lineWidthPix, white, [xCenter yCenter], 2);
-                   Screen('Flip', window);
-                   WaitSecs(0.1);
-                   elseif randpos{2} == up
-                   Screen('TextSize', window, 120);
-                   Screen('DrawText', window, num2str(seq2(currentFrame2)), rightX, rightY, [1 1 1]);
-                   Screen('DrawText', window,  num2str(rand2{1}(currentFrame2)), leftX, leftY, [1 1 1]);
-                   Screen('Flip', window);
-                   WaitSecs(0.5);
-                   Screen('FillRect', window, black);
-                   Screen('DrawLines', window, allCoords,lineWidthPix, white, [xCenter yCenter], 2);
-                   Screen('Flip', window);
-                   WaitSecs(0.1);
-                   elseif randpos{3} == up
-                   Screen('TextSize', window, 120);
-                   Screen('DrawText', window, num2str(seq3(currentFrame2)), rightX, rightY, [1 1 1]);
-                   Screen('DrawText', window,  num2str(seq2(currentFrame2)), leftX, leftY, [1 1 1]);
-                   Screen('Flip', window);
-                   WaitSecs(0.5);
-                   Screen('FillRect', window, black);
-                   Screen('DrawLines', window, allCoords,lineWidthPix, white, [xCenter yCenter], 2);
-                   Screen('Flip', window);
-                   WaitSecs(0.1);
-                   end
-                end
-            end
-            if redoTrialFlag == 1
-                break
-            end
-            currentFrame2 = currentFrame2+1;
-        end
-        if redoTrialFlag == 1
-            continue
-        end
-
-        % Question mark
-        Screen('TextSize', window, 120);
-        Screen('DrawText', window, '?', screenXpixels*0.48, screenYpixels*0.45, white);
-        Screen('Flip', window)
-
-        % Timestamp
-        questionmarkOnset2 = GetSecs();
-
-        % Check the keyboard to see if a button has been pressed
-        [secs2, keyCode2] = KbStrokeWait;  
-
-        % Ensure that only the left or right arrow key is pressed
-        number_tries_2 = 1;
-        while number_tries_2 < 3
-            if ismember(KbName(keyCode2), {'LeftArrow' 'RightArrow'})
-            break;
-            else
-                Screen('TextSize', window, 25);
-                Screen('DrawText', window, 'Please only select the left or right arrow key to indicate your choice', screenXpixels*0.1, screenYpixels*0.5, white);
-                Screen('Flip', window);
-                WaitSecs(2.0);
-
-                % Question mark
-                Screen('TextSize', window, 120);
-                Screen('DrawText', window, '?', screenXpixels*0.48, screenYpixels*0.45, white);
-                Screen('Flip', window)
-
-                % Timestamp
-                questionmarkOnset2 = GetSecs();
-
-                % Check the keyboard to see if a button has been pressed
-                [secs2, keyCode2] = KbStrokeWait;
-
-                number_tries_2 = number_tries_2 + 1;
-            end
-        end
-
-
         % Turn screen back to black
         Screen('FillRect', window, black);
         Screen('Flip', window);
 
         % Results matrix 
         if randtemp(currenttrialinblock) == 1
-        resultsMatrix(newtrial).TrialType = randtemp(currenttrialinblock);
-        resultsMatrix(newtrial).S1Numbers = num2str(seq1);
-        resultsMatrix(newtrial).S1Mean = 5;
-        resultsMatrix(newtrial).S1Variance = 1;
-        resultsMatrix(newtrial).S1Position = randpos{1};
-        resultsMatrix(newtrial).S2Numbers = num2str(seq2);
-        resultsMatrix(newtrial).S2Mean = 5;
-        resultsMatrix(newtrial).S2Variance = 4;
-        resultsMatrix(newtrial).S2Position = randpos{2};
-        resultsMatrix(newtrial).S3Numbers = num2str(seq3);
-        resultsMatrix(newtrial).S3Mean = 5;
-        resultsMatrix(newtrial).S3Variance = 1;
-        resultsMatrix(newtrial).S3Position = randpos{3};
+        if keyCode1(rightKey)
+              if randpos{1} == right
+                  resultsMatrix(newtrial).Srightnumber = 1;
+                  resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 1;
+                  resultsMatrix(newtrial).Sleftnumber = 2;
+                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 4;
+              elseif randpos{2} == right
+                  resultsMatrix(newtrial).Srightnumber = 2;
+                  resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 4;
+                  resultsMatrix(newtrial).Sleftnumber = 1;
+                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq1);
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
+              end
+        elseif keyCode1(leftKey)
+            if randpos{1} == left
+                  resultsMatrix(newtrial).Srightnumber = 2;
+                  resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 4;
+                  resultsMatrix(newtrial).Sleftnumber = 1;
+                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq1);
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
+              elseif randpos{2} == left
+                  resultsMatrix(newtrial).Srightnumber = 1;
+                  resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 1;
+                  resultsMatrix(newtrial).Sleftnumber = 2;
+                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 4;
+             end
+        end
         resultsMatrix(newtrial).Key1 = KbName(keyCode1);
         resultsMatrix(newtrial).Timeq1 = questionmarkOnset1 - secs1;
-        if keyCode1(rightKey)
-              if randpos{1} == right
-                  resultsMatrix(newtrial).Srightnumber = 2;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Srightmean = 5;
-                  resultsMatrix(newtrial).Srightvariance = 4;
-                  resultsMatrix(newtrial).Sleftnumber = 3;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 5;
-                  resultsMatrix(newtrial).Sleftvariance = 1;
-              elseif randpos{2} == right
-                  resultsMatrix(newtrial).Srightnumber = 1;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 5;
-                  resultsMatrix(newtrial).Srightvariance = 1;
-                  resultsMatrix(newtrial).Sleftnumber = 3;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 5;
-                  resultsMatrix(newtrial).Sleftvariance = 1;
-              elseif randpos{3} == right
-                  resultsMatrix(newtrial).Srightnumber = 1;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 5;
-                  resultsMatrix(newtrial).Srightvariance = 1;
-                  resultsMatrix(newtrial).Sleftnumber = 2;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 5;
-                  resultsMatrix(newtrial).Sleftvariance = 4;
-              end
-        elseif keyCode1(leftKey)
-            if randpos{1} == left
-                  resultsMatrix(newtrial).Srightnumber = 2;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Srightmean = 5;
-                  resultsMatrix(newtrial).Srightvariance = 4;
-                  resultsMatrix(newtrial).Sleftnumber = 3;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 5;
-                  resultsMatrix(newtrial).Sleftvariance = 1;
-              elseif randpos{2} == left
-                  resultsMatrix(newtrial).Srightnumber = 1;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 5;
-                  resultsMatrix(newtrial).Srightvariance = 1;
-                  resultsMatrix(newtrial).Sleftnumber = 3;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 5;
-                  resultsMatrix(newtrial).Sleftvariance = 1;
-              elseif randpos{3} == left
-                  resultsMatrix(newtrial).Srightnumber = 1;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 5;
-                  resultsMatrix(newtrial).Srightvariance = 1;
-                  resultsMatrix(newtrial).Sleftnumber = 2;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 5;
-                  resultsMatrix(newtrial).Sleftvariance = 4;
-            end
-        elseif keyCode1(upKey)
-             if randpos{1} == up
-                  resultsMatrix(newtrial).Srightnumber = 2;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Srightmean = 5;
-                  resultsMatrix(newtrial).Srightvariance = 4;
-                  resultsMatrix(newtrial).Sleftnumber = 3;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 5;
-                  resultsMatrix(newtrial).Sleftvariance = 1;
-              elseif randpos{2} == up
-                  resultsMatrix(newtrial).Srightnumber = 1;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 5;
-                  resultsMatrix(newtrial).Srightvariance = 1;
-                  resultsMatrix(newtrial).Sleftnumber = 3;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 5;
-                  resultsMatrix(newtrial).Sleftvariance = 1;
-              elseif randpos{3} == up
-                  resultsMatrix(newtrial).Srightnumber = 1;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 5;
-                  resultsMatrix(newtrial).Srightvariance = 1;
-                  resultsMatrix(newtrial).Sleftnumber = 2;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 5;
-                  resultsMatrix(newtrial).Sleftvariance = 4;
-             end
-        end
-        resultsMatrix(newtrial).Key2 = KbName(keyCode2);
-        resultsMatrix(newtrial).Timeq2 = questionmarkOnset2 - secs2;
 
         elseif randtemp(currenttrialinblock) == 2
-        resultsMatrix(newtrial).TrialType = randtemp(currenttrialinblock);
-        resultsMatrix(newtrial).S1Numbers = num2str(seq1);
-        resultsMatrix(newtrial).S1Mean = 4;
-        resultsMatrix(newtrial).S1Variance = 1;
-        resultsMatrix(newtrial).S1Position = randpos{1};
-        resultsMatrix(newtrial).S2Numbers = num2str(seq2);
-        resultsMatrix(newtrial).S2Mean = 5;
-        resultsMatrix(newtrial).S2Variance = 4;
-        resultsMatrix(newtrial).S2Position = randpos{2};
-        resultsMatrix(newtrial).S3Numbers = num2str(seq3);
-        resultsMatrix(newtrial).S3Mean = 6;
-        resultsMatrix(newtrial).S3Variance = 1;
-        resultsMatrix(newtrial).S3Position = randpos{3};
-        resultsMatrix(newtrial).Key1 = KbName(keyCode1);
-        resultsMatrix(newtrial).Timeq1 = secs1;
         if keyCode1(rightKey)
               if randpos{1} == right
-                  resultsMatrix(newtrial).Srightnumber = 2;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
+                  resultsMatrix(newtrial).Srightnumber = 1;
+                  resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
                   resultsMatrix(newtrial).Srightmean = 5;
-                  resultsMatrix(newtrial).Srightvariance = 4;
-                  resultsMatrix(newtrial).Sleftnumber = 3;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 6;
-                  resultsMatrix(newtrial).Sleftvariance = 1;
-              elseif randpos{2} == right
-                  resultsMatrix(newtrial).Srightnumber = 1;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 4;
-                  resultsMatrix(newtrial).Srightvariance = 1;
-                  resultsMatrix(newtrial).Sleftnumber = 3;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 6;
-                  resultsMatrix(newtrial).Sleftvariance = 1;
-              elseif randpos{3} == right
-                  resultsMatrix(newtrial).Srightnumber = 1;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 4;
                   resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 2;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
                   resultsMatrix(newtrial).Sleftmean = 5;
                   resultsMatrix(newtrial).Sleftvariance = 4;
+              elseif randpos{2} == right
+                  resultsMatrix(newtrial).Srightnumber = 2;
+                  resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 4;
+                  resultsMatrix(newtrial).Sleftnumber = 1;
+                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq1);
+                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
               end
         elseif keyCode1(leftKey)
             if randpos{1} == left
@@ -993,52 +540,14 @@ while currentblock <= nBlocks
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
                   resultsMatrix(newtrial).Srightmean = 5;
                   resultsMatrix(newtrial).Srightvariance = 4;
-                  resultsMatrix(newtrial).Sleftnumber = 3;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 6;
+                  resultsMatrix(newtrial).Sleftnumber = 1;
+                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq1);
+                  resultsMatrix(newtrial).Sleftmean = 5;
                   resultsMatrix(newtrial).Sleftvariance = 1;
               elseif randpos{2} == left
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 4;
-                  resultsMatrix(newtrial).Srightvariance = 1;
-                  resultsMatrix(newtrial).Sleftnumber = 3;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 6;
-                  resultsMatrix(newtrial).Sleftvariance = 1;
-              elseif randpos{3} == left
-                  resultsMatrix(newtrial).Srightnumber = 1;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 4;
-                  resultsMatrix(newtrial).Srightvariance = 1;
-                  resultsMatrix(newtrial).Sleftnumber = 2;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 5;
-                  resultsMatrix(newtrial).Sleftvariance = 4;
-            end
-        elseif keyCode1(upKey)
-             if randpos{1} == up
-                  resultsMatrix(newtrial).Srightnumber = 2;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
                   resultsMatrix(newtrial).Srightmean = 5;
-                  resultsMatrix(newtrial).Srightvariance = 4;
-                  resultsMatrix(newtrial).Sleftnumber = 3;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 6;
-                  resultsMatrix(newtrial).Sleftvariance = 1;
-              elseif randpos{2} == up
-                  resultsMatrix(newtrial).Srightnumber = 1;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 4;
-                  resultsMatrix(newtrial).Srightvariance = 1;
-                  resultsMatrix(newtrial).Sleftnumber = 3;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 6;
-                  resultsMatrix(newtrial).Sleftvariance = 1;
-              elseif randpos{3} == up
-                  resultsMatrix(newtrial).Srightnumber = 1;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 4;
                   resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 2;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
@@ -1046,46 +555,13 @@ while currentblock <= nBlocks
                   resultsMatrix(newtrial).Sleftvariance = 4;
              end
         end
-        resultsMatrix(newtrial).Key2 = KbName(keyCode2);
-        resultsMatrix(newtrial).Timeq2 = secs2;
+        resultsMatrix(newtrial).Key1 = KbName(keyCode1);
+        resultsMatrix(newtrial).Timeq1 = questionmarkOnset1 - secs1;
 
 
         elseif randtemp(currenttrialinblock) == 3
-        resultsMatrix(newtrial).TrialType = randtemp(currenttrialinblock);
-        resultsMatrix(newtrial).S1Numbers = num2str(seq1);
-        resultsMatrix(newtrial).S1Mean = 3;
-        resultsMatrix(newtrial).S1Variance = 1;
-        resultsMatrix(newtrial).S1Position = randpos{1};
-        resultsMatrix(newtrial).S2Numbers = num2str(seq2);
-        resultsMatrix(newtrial).S2Mean = 5;
-        resultsMatrix(newtrial).S2Variance = 1;
-        resultsMatrix(newtrial).S2Position = randpos{2};
-        resultsMatrix(newtrial).S3Numbers = num2str(seq3);
-        resultsMatrix(newtrial).S3Mean = 7;
-        resultsMatrix(newtrial).S3Variance = 1;
-        resultsMatrix(newtrial).S3Position = randpos{3};
-        resultsMatrix(newtrial).Key1 = KbName(keyCode1);
-        resultsMatrix(newtrial).Timeq1 = secs1;
         if keyCode1(rightKey)
               if randpos{1} == right
-                  resultsMatrix(newtrial).Srightnumber = 2;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Srightmean = 5;
-                  resultsMatrix(newtrial).Srightvariance = 1;
-                  resultsMatrix(newtrial).Sleftnumber = 3;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 7;
-                  resultsMatrix(newtrial).Sleftvariance = 1;
-              elseif randpos{2} == right
-                  resultsMatrix(newtrial).Srightnumber = 1;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 3;
-                  resultsMatrix(newtrial).Srightvariance = 1;
-                  resultsMatrix(newtrial).Sleftnumber = 3;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 7;
-                  resultsMatrix(newtrial).Sleftvariance = 1;
-              elseif randpos{3} == right
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
                   resultsMatrix(newtrial).Srightmean = 3;
@@ -1094,6 +570,15 @@ while currentblock <= nBlocks
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
                   resultsMatrix(newtrial).Sleftmean = 5;
                   resultsMatrix(newtrial).Sleftvariance = 1;
+              elseif randpos{2} == right
+                  resultsMatrix(newtrial).Srightnumber = 2;
+                  resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
+                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightvariance = 1;
+                  resultsMatrix(newtrial).Sleftnumber = 1;
+                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq1);
+                  resultsMatrix(newtrial).Sleftmean = 3;
+                  resultsMatrix(newtrial).Sleftvariance = 1;
               end
         elseif keyCode1(leftKey)
             if randpos{1} == left
@@ -1101,20 +586,11 @@ while currentblock <= nBlocks
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
                   resultsMatrix(newtrial).Srightmean = 5;
                   resultsMatrix(newtrial).Srightvariance = 1;
-                  resultsMatrix(newtrial).Sleftnumber = 3;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 7;
+                  resultsMatrix(newtrial).Sleftnumber = 1;
+                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq1);
+                  resultsMatrix(newtrial).Sleftmean = 3;
                   resultsMatrix(newtrial).Sleftvariance = 1;
               elseif randpos{2} == left
-                  resultsMatrix(newtrial).Srightnumber = 1;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 3;
-                  resultsMatrix(newtrial).Srightvariance = 1;
-                  resultsMatrix(newtrial).Sleftnumber = 3;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 7;
-                  resultsMatrix(newtrial).Sleftvariance = 1;
-              elseif randpos{3} == left
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
                   resultsMatrix(newtrial).Srightmean = 3;
@@ -1124,168 +600,56 @@ while currentblock <= nBlocks
                   resultsMatrix(newtrial).Sleftmean = 5;
                   resultsMatrix(newtrial).Sleftvariance = 1;
             end
-        elseif keyCode1(upKey)
-             if randpos{1} == up
-                  resultsMatrix(newtrial).Srightnumber = 2;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Srightmean = 5;
-                  resultsMatrix(newtrial).Srightvariance = 1;
-                  resultsMatrix(newtrial).Sleftnumber = 3;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 7;
-                  resultsMatrix(newtrial).Sleftvariance = 1;
-              elseif randpos{2} == up
-                  resultsMatrix(newtrial).Srightnumber = 1;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 3;
-                  resultsMatrix(newtrial).Srightvariance = 1;
-                  resultsMatrix(newtrial).Sleftnumber = 3;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 7;
-                  resultsMatrix(newtrial).Sleftvariance = 1;
-              elseif randpos{3} == up
-                  resultsMatrix(newtrial).Srightnumber = 1;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 3;
-                  resultsMatrix(newtrial).Srightvariance = 1;
-                  resultsMatrix(newtrial).Sleftnumber = 2;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 5;
-                  resultsMatrix(newtrial).Sleftvariance = 1;
-             end
         end
-        resultsMatrix(newtrial).Key2 = KbName(keyCode2);
-        resultsMatrix(newtrial).Timeq2 = secs2;
-
-        elseif randtemp(currenttrialinblock) == 4
-        resultsMatrix(newtrial).TrialType = randtemp(currenttrialinblock);
-        resultsMatrix(newtrial).S1Numbers = num2str(seq1);
-        resultsMatrix(newtrial).S1Mean = 5;
-        resultsMatrix(newtrial).S1Variance = 1;
-        resultsMatrix(newtrial).S1Position = randpos{1};
-        resultsMatrix(newtrial).S2Numbers = num2str(seq2);
-        resultsMatrix(newtrial).S2Mean = 5;
-        resultsMatrix(newtrial).S2Variance = 4;
-        resultsMatrix(newtrial).S2Position = randpos{2};
-        resultsMatrix(newtrial).S3Numbers = num2str(seq3);
-        resultsMatrix(newtrial).S3Mean = 5;
-        resultsMatrix(newtrial).S3Variance = 1;
-        resultsMatrix(newtrial).S3Position = randpos{3};
         resultsMatrix(newtrial).Key1 = KbName(keyCode1);
         resultsMatrix(newtrial).Timeq1 = secs1;
-        if keyCode1(leftKey)
-             if randpos{1} == left    
+
+        elseif randtemp(currenttrialinblock) == 4
+        if keyCode1(rightKey)
+              if randpos{1} == right
                   resultsMatrix(newtrial).Srightnumber = 1;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 5;
+                  resultsMatrix(newtrial).Srightmean = 3;
                   resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 2;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 5;
-                  resultsMatrix(newtrial).Sleftvariance = 4;
-              elseif randpos{2} == left
-                  resultsMatrix(newtrial).Srightnumber = 2;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Srightmean = 5;
-                  resultsMatrix(newtrial).Srightvariance = 4;
-                  if rand2{1} == seq1
-                  resultsMatrix(newtrial).Sleftnumber = 1;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq1);
                   resultsMatrix(newtrial).Sleftmean = 5;
                   resultsMatrix(newtrial).Sleftvariance = 1;
-                  elseif rand2{1} == seq3
-                  resultsMatrix(newtrial).Sleftnumber = 3;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 5;
-                  resultsMatrix(newtrial).Sleftvariance = 1; 
-                  end
-             elseif randpos{3} == left
-                  resultsMatrix(newtrial).Srightnumber = 3;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Srightmean = 5;
-                  resultsMatrix(newtrial).Srightvariance = 1;
-                  resultsMatrix(newtrial).Sleftnumber = 2;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 5;
-                  resultsMatrix(newtrial).Sleftvariance = 4; 
-             end
-        elseif keyCode1(rightKey)
-             if randpos{1} == right    
-                  resultsMatrix(newtrial).Srightnumber = 1;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 5;
-                  resultsMatrix(newtrial).Srightvariance = 1;
-                  resultsMatrix(newtrial).Sleftnumber = 2;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 5;
-                  resultsMatrix(newtrial).Sleftvariance = 4;
               elseif randpos{2} == right
                   resultsMatrix(newtrial).Srightnumber = 2;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
                   resultsMatrix(newtrial).Srightmean = 5;
-                  resultsMatrix(newtrial).Srightvariance = 4;
-                  if rand2{1} == seq1
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 1;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftmean = 3;
                   resultsMatrix(newtrial).Sleftvariance = 1;
-                  elseif rand2{1} == seq3
-                  resultsMatrix(newtrial).Sleftnumber = 3;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 5;
-                  resultsMatrix(newtrial).Sleftvariance = 1; 
-                  end
-              elseif randpos{3} == right
-                  resultsMatrix(newtrial).Srightnumber = 3;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Srightmean = 5;
-                  resultsMatrix(newtrial).Srightvariance = 1;
-                  resultsMatrix(newtrial).Sleftnumber = 2;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 5;
-                  resultsMatrix(newtrial).Sleftvariance = 4;  
-             end
-        elseif keyCode1(upKey)
-              if randpos{1} == up   
-                  resultsMatrix(newtrial).Srightnumber = 1;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Srightmean = 5;
-                  resultsMatrix(newtrial).Srightvariance = 1;
-                  resultsMatrix(newtrial).Sleftnumber = 2;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
-                  resultsMatrix(newtrial).Sleftmean = 5;
-                  resultsMatrix(newtrial).Sleftvariance = 4;
-              elseif randpos{2} == up
+              end
+        elseif keyCode1(leftKey)
+            if randpos{1} == left
                   resultsMatrix(newtrial).Srightnumber = 2;
                   resultsMatrix(newtrial).Srightnumbers = num2str(seq2);
                   resultsMatrix(newtrial).Srightmean = 5;
-                  resultsMatrix(newtrial).Srightvariance = 4;
-                  if rand2{1} == seq1
+                  resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 1;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq1);
-                  resultsMatrix(newtrial).Sleftmean = 5;
+                  resultsMatrix(newtrial).Sleftmean = 3;
                   resultsMatrix(newtrial).Sleftvariance = 1;
-                  elseif rand2{1} == seq3
-                  resultsMatrix(newtrial).Sleftnumber = 3;
-                  resultsMatrix(newtrial).Sleftnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Sleftmean = 5;
-                  resultsMatrix(newtrial).Sleftvariance = 1; 
-                  end
-             elseif randpos{3} == up
-                  resultsMatrix(newtrial).Srightnumber = 3;
-                  resultsMatrix(newtrial).Srightnumbers = num2str(seq3);
-                  resultsMatrix(newtrial).Srightmean = 5;
+              elseif randpos{2} == left
+                  resultsMatrix(newtrial).Srightnumber = 1;
+                  resultsMatrix(newtrial).Srightnumbers = num2str(seq1);
+                  resultsMatrix(newtrial).Srightmean = 3;
                   resultsMatrix(newtrial).Srightvariance = 1;
                   resultsMatrix(newtrial).Sleftnumber = 2;
                   resultsMatrix(newtrial).Sleftnumbers = num2str(seq2);
                   resultsMatrix(newtrial).Sleftmean = 5;
-                  resultsMatrix(newtrial).Sleftvariance = 4; 
-              end
+                  resultsMatrix(newtrial).Sleftvariance = 1;
+            end
         end
+        resultsMatrix(newtrial).Key1 = KbName(keyCode1);
+        resultsMatrix(newtrial).Timeq1 = secs1;
 
-        resultsMatrix(newtrial).Key2 = KbName(keyCode2)  ;
-        resultsMatrix(newtrial).Timeq2 = secs2;
-
+        
         end
         currenttrialinblock = currenttrialinblock + 1;
     end
