@@ -264,12 +264,6 @@ while currentblock <= nBlocks
         % Randomise position of sequences
         randpos = Shuffle({left, right, up});
 
-        % Randomise which sequence is chosen alongside the rejected sequence in the
-        % manipulation condition
-        rand1 = Shuffle({seq1, seq2});
-        rand2 = Shuffle({seq1, seq3});
-        rand3 = Shuffle({seq2, seq3});
-
         % Fixation cross screen (FCS)
         center_focused = 0;
         timer_set = 0;
