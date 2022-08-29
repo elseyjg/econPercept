@@ -262,8 +262,9 @@ while currentblock <= nBlocks
         end  
 
         % Randomise position of sequences
-        randpos = Shuffle({left, right, up});
+        randpos = Shuffle({left, right});
 
+  
         % Fixation cross screen (FCS)
         center_focused = 0;
         timer_set = 0;
