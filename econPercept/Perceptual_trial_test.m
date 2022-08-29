@@ -251,13 +251,13 @@ while currentblock <= nBlocks
         if randtemp(currenttrialinblock) == 1 % No mean difference (brightest)
         seq1 = dis(1, 5, 9, 1, 12);
         seq2 = dis(4, 5, 9, 1, 12);
-        elseif randtemp(currenttrialinblock) == 3  % No mean difference (darkest)
+        elseif randtemp(currenttrialinblock) == 2  % No mean difference (darkest)
         seq1 = dis(1, 5, 9, 1, 12);
         seq2 = dis(4, 5, 9, 1, 12);
         elseif randtemp(currenttrialinblock) == 3  % Large mean difference (brightest)
         seq1 = dis(1, 3, 9, 1, 12);
         seq2 = dis(1, 5, 9, 1, 12);
-        elseif randtemp(currenttrialinblock) == 3  % Large mean difference (darkest)
+        elseif randtemp(currenttrialinblock) == 4  % Large mean difference (darkest)
         seq1 = dis(1, 3, 9, 1, 12);
         seq2 = dis(1, 5, 9, 1, 12);
         end  
@@ -265,7 +265,7 @@ while currentblock <= nBlocks
         % Define color matrices
         seq1_colors = zeros(12,3);
         seq2_colors = zeros(12,3);
-        seq3_colors = zeros(12,3);
+        
 
         % Substitute numbers with grayscale images
         for i = 1:12
@@ -276,18 +276,8 @@ while currentblock <= nBlocks
            seq2_colors(i, 1:3) = rectColor{seq2(i)};     
         end
 
-        for i = 1:12
-           seq3_colors(i, 1:3) = rectColor{seq3(i)};     
-        end
-
         % Randomise position of sequences
         randpos = Shuffle({centeredRect_left, centeredRect_right});
-
-        % Randomise which sequence is chosen alongside the rejected sequence in the
-        % manipulation condition
-        rand1 = Shuffle({seq1_colors, seq2_colors});
-        rand2 = Shuffle({seq1_colors, seq3_colors});
-        rand3 = Shuffle({seq2_colors, seq3_colors});
 
         % Fixation cross screen (FCS)
         center_focused = 0;
@@ -363,7 +353,7 @@ while currentblock <= nBlocks
             RECORD_DATA{entryNumber, 4} = 0;
             entryNumber = entryNumber + 1;
             calibrate_flag = 1;
-            %             disp(find(keyCode))%*
+            % disp(find(keyCode))%*
             return;
         end
         %         elseif(keyCode(End_ButtonPress))% Someone pressed 'End'
