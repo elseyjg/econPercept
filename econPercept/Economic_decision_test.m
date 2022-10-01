@@ -376,7 +376,7 @@ while currentblock <= nBlocks
         elseif randtemp(currenttrialinblock) == 3
             Screen('DrawText', window, 'Accept the highest value sequence ', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 4
-            Screen('DrawText', window, 'Choose the darkest light', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Reject the lowest value sequence', screenXpixels*0.48, screenYpixels*0.45, white);
         end
             Screen('Flip', window);
         WaitSecs(0.5);
