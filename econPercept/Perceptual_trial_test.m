@@ -154,7 +154,7 @@ penWidthPixels = 6;
 %                  Randomise temporal order of trials
 %----------------------------------------------------------------------
  
-trialorder = [1:4];
+trialorder = [1:28];
 nTrials = size(trialorder,2);
 randtemp = Shuffle(trialorder);
 
@@ -248,18 +248,90 @@ while currentblock <= nBlocks
         newtrial = newtrial + 1;
 
         % Define distributions 
-        if randtemp(currenttrialinblock) == 1 % No mean difference (brightest)
+        if randtemp(currenttrialinblock) == 1 % Small mean difference (brightest)
+        seq1 = dis(1, 3, 9, 1, 12);
+        seq2 = dis(1, 4, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 2  % Small mean difference (darkest)
+        seq1 = dis(1, 3, 9, 1, 12);
+        seq2 = dis(1, 4, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 3  % Small mean difference (brightest)
+        seq1 = dis(1, 4, 9, 1, 12);
+        seq2 = dis(1, 5, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 4  % Small mean difference (darkest)
+        seq1 = dis(1, 4, 9, 1, 12);
+        seq2 = dis(1, 5, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 5  % Small mean difference (brightest)
         seq1 = dis(1, 5, 9, 1, 12);
-        seq2 = dis(4, 5, 9, 1, 12);
-        elseif randtemp(currenttrialinblock) == 2  % No mean difference (darkest)
+        seq2 = dis(1, 6, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 6  % Small mean difference (darkest)
         seq1 = dis(1, 5, 9, 1, 12);
-        seq2 = dis(4, 5, 9, 1, 12);
-        elseif randtemp(currenttrialinblock) == 3  % Large mean difference (brightest)
+        seq2 = dis(1, 6, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 7  % Small mean difference (brightest)
+        seq1 = dis(1, 6, 9, 1, 12);
+        seq2 = dis(1, 7, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 8  % Small mean difference (darkest)
+        seq1 = dis(1, 6, 9, 1, 12);
+        seq2 = dis(1, 7, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 9  % Large mean difference (brightest)
         seq1 = dis(1, 3, 9, 1, 12);
         seq2 = dis(1, 5, 9, 1, 12);
-        elseif randtemp(currenttrialinblock) == 4  % Large mean difference (darkest)
+        elseif randtemp(currenttrialinblock) == 10  % Large mean difference (darkest)
         seq1 = dis(1, 3, 9, 1, 12);
         seq2 = dis(1, 5, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 11  % Large mean difference (brightest)
+        seq1 = dis(1, 4, 9, 1, 12);
+        seq2 = dis(1, 6, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 12  % Large mean difference (darkest)
+        seq1 = dis(1, 4, 9, 1, 12);
+        seq2 = dis(1, 6, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 13  % Large mean difference (brightest)
+        seq1 = dis(1, 5, 9, 1, 12);
+        seq2 = dis(1, 7, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 14  % Large mean difference (darkest)
+        seq1 = dis(1, 5, 9, 1, 12);
+        seq2 = dis(1, 7, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 15  % No mean difference (brightest)
+        seq1 = dis(1, 5, 9, 1, 12);
+        seq2 = dis(4, 5, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 16  % No mean difference (darkest)
+        seq1 = dis(1, 5, 9, 1, 12);
+        seq2 = dis(4, 5, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 17  % No mean difference (brightest)
+        seq1 = dis(1, 5, 9, 1, 12);
+        seq2 = dis(4, 5, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 18  % No mean difference (darkest)
+        seq1 = dis(1, 5, 9, 1, 12);
+        seq2 = dis(4, 5, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 19  % No mean difference (brightest)
+        seq1 = dis(1, 5, 9, 1, 12);
+        seq2 = dis(4, 5, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 20  % No mean difference (darkest)
+        seq1 = dis(1, 5, 9, 1, 12);
+        seq2 = dis(4, 5, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 21  % No mean difference (brightest)
+        seq1 = dis(1, 5, 9, 1, 12);
+        seq2 = dis(4, 5, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 22  % No mean difference (darkest)
+        seq1 = dis(1, 5, 9, 1, 12);
+        seq2 = dis(4, 5, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 23  % No mean difference (brightest)
+        seq1 = dis(1, 5, 9, 1, 12);
+        seq2 = dis(4, 5, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 24  % No mean difference (darkest)
+        seq1 = dis(1, 5, 9, 1, 12);
+        seq2 = dis(4, 5, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 25  % No mean difference (brightest)
+        seq1 = dis(1, 5, 9, 1, 12);
+        seq2 = dis(4, 5, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 26  % No mean difference (darkest)
+        seq1 = dis(1, 5, 9, 1, 12);
+        seq2 = dis(4, 5, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 27  % No mean difference (brightest)
+        seq1 = dis(1, 5, 9, 1, 12);
+        seq2 = dis(4, 5, 9, 1, 12);
+        elseif randtemp(currenttrialinblock) == 28  % No mean difference (darkest)
+        seq1 = dis(1, 5, 9, 1, 12);
+        seq2 = dis(4, 5, 9, 1, 12);
         end  
 
         % Define color matrices
