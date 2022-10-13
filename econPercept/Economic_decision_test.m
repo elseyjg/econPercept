@@ -1874,8 +1874,7 @@ while currentblock <= nBlocks
         end
         resultsMatrix(newtrial).Key1 = KbName(keyCode1);
         resultsMatrix(newtrial).Timeq1 = questionmarkOnset1 - secs1;
-       
-        end
+          
         currenttrialinblock = currenttrialinblock + 1;
     end
     currentblock = currentblock + 1;
