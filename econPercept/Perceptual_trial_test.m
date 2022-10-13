@@ -456,61 +456,61 @@ while currentblock <= nBlocks
         % Give choice instruction
         Screen('TextSize', window, 120);
         if randtemp(currenttrialinblock) == 1
-            Screen('DrawText', window, 'Accept the highest value sequence', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Accept the sequence with the brightest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 2
-            Screen('DrawText', window, 'Reject the lowest value sequence', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Reject the sequence with the darkest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 3
-            Screen('DrawText', window, 'Accept the highest value sequence ', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Accept the sequence with the brightest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 4
-            Screen('DrawText', window, 'Reject the lowest value sequence', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Reject the sequence with the darkest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 5
-            Screen('DrawText', window, 'Accept the highest value sequence', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Accept the sequence with the brightest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 6
-            Screen('DrawText', window, 'Reject the lowest value sequence', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Reject the sequence with the darkest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 7
-            Screen('DrawText', window, 'Accept the highest value sequence ', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Accept the sequence with the brightest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 8
-            Screen('DrawText', window, 'Reject the lowest value sequence', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Reject the sequence with the darkest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 9
-            Screen('DrawText', window, 'Accept the highest value sequence', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Accept the sequence with the brightest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 10
-            Screen('DrawText', window, 'Reject the lowest value sequence', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Reject the sequence with the darkest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 11
-            Screen('DrawText', window, 'Accept the highest value sequence ', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Accept the sequence with the brightest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 12
-            Screen('DrawText', window, 'Reject the lowest value sequence', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Reject the sequence with the darkest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 13
-            Screen('DrawText', window, 'Accept the highest value sequence', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Accept the sequence with the brightest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 14
-            Screen('DrawText', window, 'Reject the lowest value sequence', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Reject the sequence with the darkest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 15
-            Screen('DrawText', window, 'Accept the highest value sequence ', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Accept the sequence with the brightest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 16
-            Screen('DrawText', window, 'Reject the lowest value sequence', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Reject the sequence with the darkest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 17
-            Screen('DrawText', window, 'Accept the highest value sequence', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Accept the sequence with the brightest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 18
-            Screen('DrawText', window, 'Reject the lowest value sequence', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Reject the sequence with the darkest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 19
-            Screen('DrawText', window, 'Accept the highest value sequence ', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Accept the sequence with the brightest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 20
-            Screen('DrawText', window, 'Reject the lowest value sequence', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Reject the sequence with the darkest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 21
-            Screen('DrawText', window, 'Accept the highest value sequence', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Accept the sequence with the brightest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 22
-            Screen('DrawText', window, 'Reject the lowest value sequence', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Reject the sequence with the darkest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 23
-            Screen('DrawText', window, 'Accept the highest value sequence ', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Accept the sequence with the brightest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 24
-            Screen('DrawText', window, 'Reject the lowest value sequence', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Reject the sequence with the darkest light', screenXpixels*0.48, screenYpixels*0.45, white);
          elseif randtemp(currenttrialinblock) == 25
-            Screen('DrawText', window, 'Accept the highest value sequence', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Accept the sequence with the brightest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 26
-            Screen('DrawText', window, 'Reject the lowest value sequence', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Reject the sequence with the darkest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 27
-            Screen('DrawText', window, 'Accept the highest value sequence ', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Accept the sequence with the brightest light', screenXpixels*0.48, screenYpixels*0.45, white);
         elseif randtemp(currenttrialinblock) == 28
-            Screen('DrawText', window, 'Reject the lowest value sequence', screenXpixels*0.48, screenYpixels*0.45, white);
+            Screen('DrawText', window, 'Reject the sequence with the darkest light', screenXpixels*0.48, screenYpixels*0.45, white);
         end
         Screen('Flip', window);
         WaitSecs(0.5);
